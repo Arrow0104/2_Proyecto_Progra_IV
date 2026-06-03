@@ -207,4 +207,3 @@ public class DataLoader {
                 pcRepo.save(new PuestoCaracteristica(puesto, car, nivel)));
     }
 }
-}
