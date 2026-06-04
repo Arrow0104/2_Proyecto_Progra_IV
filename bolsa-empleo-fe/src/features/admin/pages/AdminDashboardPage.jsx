@@ -39,5 +39,5 @@ export default function AdminDashboardPage() {
 }
 
 const gridStyle = { display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1rem', marginTop: '1rem' }
-const cardStyle = { border: '1px solid #ddd', borderRadius: '8px', padding: '1.5rem', background: 'white' }
-const btnStyle  = { display: 'inline-block', marginTop: '0.75rem', padding: '0.5rem 1rem', background: '#1e3a5f', color: 'white', borderRadius: '4px', textDecoration: 'none' }
+const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '1.5rem' }
+const btnStyle  = { display: 'inline-block', marginTop: '0.75rem', padding: '0.5rem 1rem', background: 'var(--accent)', color: 'var(--bg-dark)', borderRadius: '4px', textDecoration: 'none', fontWeight: '600' }

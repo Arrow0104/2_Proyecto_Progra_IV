@@ -29,5 +29,5 @@ export default function CaracteristicaTree({ caracteristicas, onEliminar }) {
     )
 }
 
-const itemStyle = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.4rem 0.75rem', background: '#f5f5f5', borderRadius: '4px' }
+const itemStyle = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.4rem 0.75rem', background: 'var(--bg-mid)', borderRadius: '4px', color: 'var(--text-primary)' }
 const btnDanger = { padding: '0.2rem 0.5rem', background: '#c0392b', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' }

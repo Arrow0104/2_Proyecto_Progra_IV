@@ -21,8 +21,8 @@ export default function AprobacionCard({ entidad, tipo, onActivar, onDesactivar 
     )
 }
 
-const cardStyle    = { border: '1px solid #ddd', borderRadius: '8px', padding: '1rem', marginBottom: '0.75rem', background: 'white' }
-const infoStyle    = { margin: '0.25rem 0 0', color: '#555', fontSize: '0.9rem' }
+const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '1rem', marginBottom: '0.75rem' }
+const infoStyle = { margin: '0.25rem 0 0', color: 'var(--text-sec)', fontSize: '0.9rem' }
 const btnActivar   = { padding: '0.4rem 0.8rem', background: '#27ae60', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }
 const btnDesactivar= { padding: '0.4rem 0.8rem', background: '#c0392b', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }
 function badgeStyle(activo) {
