@@ -23,7 +23,7 @@ export default function PuestoCard({ puesto, onEliminar }) {
     )
 }
 
-const cardStyle = { border: '1px solid #ddd', borderRadius: '8px', padding: '1rem', marginBottom: '1rem', background: 'white' }
+const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '1rem', marginBottom: '1rem' }
 const btnSecondary = { padding: '0.4rem 0.8rem', background: '#1e3a5f', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }
 const btnDanger    = { padding: '0.4rem 0.8rem', background: '#c0392b', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }
 function badgeStyle(val) {

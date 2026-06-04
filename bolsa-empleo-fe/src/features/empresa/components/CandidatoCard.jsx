@@ -16,4 +16,4 @@ export default function CandidatoCard({ oferente }) {
     )
 }
 
-const cardStyle = { border: '1px solid #ddd', borderRadius: '8px', padding: '1rem', marginBottom: '1rem', background: 'white' }
+const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '1rem', marginBottom: '1rem' }

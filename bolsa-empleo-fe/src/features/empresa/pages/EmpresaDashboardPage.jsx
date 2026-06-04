@@ -50,5 +50,5 @@ export default function EmpresaDashboardPage() {
 }
 
 const gridStyle = { display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1rem', marginTop: '1rem' }
-const cardStyle = { border: '1px solid #ddd', borderRadius: '8px', padding: '1.5rem', background: 'white' }
+const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '1.5rem' }
 const btnStyle  = { display: 'inline-block', padding: '0.5rem 1rem', background: '#1e3a5f', color: 'white', borderRadius: '4px', textDecoration: 'none' }
