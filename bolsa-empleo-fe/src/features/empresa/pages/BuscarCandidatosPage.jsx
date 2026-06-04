@@ -12,7 +12,7 @@ export default function BuscarCandidatosPage() {
     const [error, setError] = useState('')
 
     useEffect(() => {
-        api.get('/admin/oferentes')
+        api.get('/empresa/candidatos')
             .then(setOferentes)
             .catch(e => setError(e.mensaje || 'Error cargando candidatos'))
             .finally(() => setCargando(false))

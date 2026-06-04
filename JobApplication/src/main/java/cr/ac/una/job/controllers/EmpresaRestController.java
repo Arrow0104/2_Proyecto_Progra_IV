@@ -71,4 +71,10 @@ public class EmpresaRestController {
         puestoService.deleteLogical(id);
         return ResponseEntity.noContent().build();
     }
+    @Autowired private OferenteService oferenteService;
+
+    @GetMapping("/candidatos")
+    public ResponseEntity<List<OferenteResponse>> buscarCandidatos() {
+        return ResponseEntity.ok(oferenteService.getAllOferentes());
+    }
 }

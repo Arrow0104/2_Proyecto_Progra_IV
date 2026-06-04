@@ -43,7 +43,7 @@ export default function HabilidadesPage() {
 
     // Solo muestra las características que el oferente aún no tiene
     const disponibles = todasCars.filter(c =>
-        !habilidades.some(h => h.caracteristica?.idCaracteristica === c.idCaracteristica)
+        !habilidades.some(h => h.idCaracteristica === c.idCaracteristica)
     )
 
     if (cargando) return <Loading />
@@ -61,11 +61,11 @@ export default function HabilidadesPage() {
                 {habilidades.length === 0
                     ? <tr><td colSpan={3}>Sin habilidades registradas</td></tr>
                     : habilidades.map(h => (
-                        <tr key={h.caracteristica?.idCaracteristica}>
-                            <td>{h.caracteristica?.nombre}</td>
+                        <tr key={h.idCaracteristica}>
+                            <td>{h.nombre}</td>
                             <td>{'⭐'.repeat(h.nivel)}</td>
                             <td>
-                                <button onClick={() => eliminar(h.caracteristica?.idCaracteristica)} style={btnDanger}>
+                                <button onClick={() => eliminar(h.idCaracteristica)} style={btnDanger}>
                                     Eliminar
                                 </button>
                             </td>

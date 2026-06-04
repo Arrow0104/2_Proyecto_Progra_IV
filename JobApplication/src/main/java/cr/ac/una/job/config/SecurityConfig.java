@@ -50,6 +50,7 @@ public class SecurityConfig {
                 // ── Oferente ────────────────────────────────────────────────
                 .requestMatchers("/api/oferente/**").hasRole("OFERENTE")
 
+                .requestMatchers(HttpMethod.GET, "/api/caracteristicas/**").authenticated()
                 // Cualquier otra ruta requiere autenticación
                 .anyRequest().authenticated()
             )

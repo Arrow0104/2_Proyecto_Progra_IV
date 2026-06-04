@@ -48,10 +48,20 @@ public class OferenteRestController {
     // ── Habilidades (características del oferente) ────────────────────────────
 
     @GetMapping("/habilidades")
-    public ResponseEntity<List<OferenteCaracteristica>> misHabilidades(HttpServletRequest req) {
+    public ResponseEntity<?> misHabilidades(HttpServletRequest req) {
         Long uid = (Long) req.getAttribute("usuarioId");
         Oferente o = oferenteService.getDomainOferenteByUsuario(uid);
-        return ResponseEntity.ok(ocRepo.findByOferenteIdOferente(o.getIdOferente()));
+
+        List<Map<String, Object>> result = ocRepo.findByOferenteIdOferente(o.getIdOferente())
+            .stream()
+            .map(oc -> Map.of(
+                "idCaracteristica", oc.getCaracteristica().getIdCaracteristica(),
+                "nombre",           oc.getCaracteristica().getNombre(),
+                "nivel",            oc.getNivel()
+            ))
+            .collect(java.util.stream.Collectors.toList());
+
+        return ResponseEntity.ok(result);
     }
 
     @PostMapping("/habilidades")
@@ -69,6 +79,7 @@ public class OferenteRestController {
     }
 
     @DeleteMapping("/habilidades/{idCaracteristica}")
+    @org.springframework.transaction.annotation.Transactional
     public ResponseEntity<Void> eliminarHabilidad(
             HttpServletRequest req,
             @PathVariable Long idCaracteristica) {
