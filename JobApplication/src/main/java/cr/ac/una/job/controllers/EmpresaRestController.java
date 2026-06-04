@@ -12,6 +12,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import cr.ac.una.job.dtos.oferente.OferenteResponse;
+import cr.ac.una.job.services.OferenteService;
+
 
 import java.util.List;
 

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,11 +55,13 @@ public class OferenteRestController {
 
         List<Map<String, Object>> result = ocRepo.findByOferenteIdOferente(o.getIdOferente())
             .stream()
-            .map(oc -> Map.of(
-                "idCaracteristica", oc.getCaracteristica().getIdCaracteristica(),
-                "nombre",           oc.getCaracteristica().getNombre(),
-                "nivel",            oc.getNivel()
-            ))
+            .map(oc -> {
+                Map<String, Object> m = new HashMap<>();
+                m.put("idCaracteristica", oc.getCaracteristica().getIdCaracteristica());
+                m.put("nombre",           oc.getCaracteristica().getNombre());
+                m.put("nivel",            oc.getNivel());
+                return m;
+            })
             .collect(java.util.stream.Collectors.toList());
 
         return ResponseEntity.ok(result);
