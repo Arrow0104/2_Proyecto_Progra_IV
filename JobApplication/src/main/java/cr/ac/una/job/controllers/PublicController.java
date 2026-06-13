@@ -14,7 +14,7 @@ public class PublicController {
 
     @Autowired private PuestoService puestoService;
 
-    /** Lista todos los puestos públicos (sin login) */
+
     @GetMapping("/puestos")
     public ResponseEntity<List<PuestoResponse>> listar(
             @RequestParam(required = false) String titulo) {
@@ -24,7 +24,7 @@ public class PublicController {
         return ResponseEntity.ok(puestoService.getPuestosPublicos());
     }
 
-    /** Detalle de un puesto público */
+
     @GetMapping("/puestos/{id}")
     public ResponseEntity<PuestoResponse> detalle(@PathVariable Long id) {
         return ResponseEntity.ok(puestoService.getPuestoById(id));

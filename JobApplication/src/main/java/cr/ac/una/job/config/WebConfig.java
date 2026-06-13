@@ -5,14 +5,7 @@ import org.springframework.web.servlet.config.annotation.*;
 
 import java.nio.file.Paths;
 
-/**
- * WebConfig P2
- * - CORS abierto a localhost:5173 (dev) para que React/Vite pueda llamar al backend.
- * - Sirve los CVs desde la carpeta uploads/cv/ externa.
- * - SPA fallback: todas las rutas que no sean /api/** devuelven index.html
- *   (necesario para React Router cuando se hace build final).
- * - NO registra AuthInterceptor — eso ahora lo hace Spring Security + JwtAuthFilter.
- */
+
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 

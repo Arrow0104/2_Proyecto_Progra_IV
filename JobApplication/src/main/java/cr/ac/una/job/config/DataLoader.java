@@ -11,15 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * DataLoader P2
- * Diferencias respecto al P1:
- * - Contraseñas hasheadas con BCrypt (ya no texto plano).
- * - Empresa ahora tiene: localizacion, correo, descripcion.
- * - Oferente ahora tiene: apellido, nacionalidad, telefono, correo.
- * - Puesto ahora tiene: tipoPublicacion (PUBLICO / PRIVADO).
- * - Se eliminó el módulo Product que ya no existe en P2.
- */
+
 @Configuration
 public class DataLoader {
 

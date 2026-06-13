@@ -15,11 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Filtro JWT: reemplaza el AuthInterceptor del P1.
- * Lee el header "Authorization: Bearer <token>", lo valida
- * y carga la autenticación en el SecurityContext de Spring Security.
- */
+
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
