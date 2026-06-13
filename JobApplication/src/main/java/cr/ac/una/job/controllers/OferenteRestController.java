@@ -28,7 +28,7 @@ public class OferenteRestController {
     @Autowired private IOferenteCaracteristicaRepository ocRepo;
     @Autowired private ICaracteristicaRepository carRepo;
 
-    // ── Perfil ────────────────────────────────────────────────────────────────
+
 
     @GetMapping("/perfil")
     public ResponseEntity<OferenteResponse> perfil(HttpServletRequest req) {
@@ -46,7 +46,7 @@ public class OferenteRestController {
         return ResponseEntity.ok(oferenteService.updateOferente(o.getIdOferente(), body));
     }
 
-    // ── Habilidades (características del oferente) ────────────────────────────
+
 
     @GetMapping("/habilidades")
     public ResponseEntity<?> misHabilidades(HttpServletRequest req) {
@@ -93,7 +93,6 @@ public class OferenteRestController {
         return ResponseEntity.noContent().build();
     }
 
-    // ── Puestos disponibles ───────────────────────────────────────────────────
 
     @GetMapping("/puestos")
     public ResponseEntity<List<PuestoResponse>> puestosDisponibles(

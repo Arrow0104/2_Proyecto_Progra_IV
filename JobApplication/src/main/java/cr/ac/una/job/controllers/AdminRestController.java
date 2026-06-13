@@ -22,7 +22,7 @@ public class AdminRestController {
     @Autowired private EmpresaService empresaService;
     @Autowired private OferenteService oferenteService;
 
-    // ── Usuarios ──────────────────────────────────────────────────────────────
+
 
     @GetMapping("/usuarios")
     public ResponseEntity<List<UsuarioResponse>> listarUsuarios() {
@@ -41,7 +41,7 @@ public class AdminRestController {
         return ResponseEntity.noContent().build();
     }
 
-    // ── Empresas ──────────────────────────────────────────────────────────────
+
 
     @GetMapping("/empresas")
     public ResponseEntity<List<EmpresaResponse>> listarEmpresas() {
@@ -60,7 +60,7 @@ public class AdminRestController {
         return ResponseEntity.noContent().build();
     }
 
-    // ── Oferentes ─────────────────────────────────────────────────────────────
+
 
     @GetMapping("/oferentes")
     public ResponseEntity<List<OferenteResponse>> listarOferentes() {

@@ -29,7 +29,7 @@ public class DataLoader {
 
         return args -> {
 
-            // ── Usuarios / Empresas / Oferentes ──────────────────────────────
+
             if (usuarioRepository.count() == 0) {
 
                 String pass = passwordEncoder.encode("password123");
@@ -51,7 +51,7 @@ public class DataLoader {
                         "admin@jobapp.com", "55555555", adminPass,
                         Rol.ADMIN, EstadoUsuario.ACTIVO, true, LocalDateTime.now()));
 
-                // Empresa — nuevos campos: localizacion, correo, descripcion
+
                 Empresa e1 = empresaRepository.save(new Empresa(null,
                         "Tech Solutions Costa Rica", "+506 2234-5678",
                         "San José, Costa Rica",
@@ -66,7 +66,7 @@ public class DataLoader {
                         "Especialistas en transformación digital para el sector financiero.",
                         true, LocalDateTime.now(), u2));
 
-                // Oferente — nuevos campos: apellido, nacionalidad, telefono, correo
+
                 oferenteRepository.save(new Oferente(null,
                         "Juan", "Pérez García",
                         "Costarricense", "8888-1111",
@@ -82,7 +82,7 @@ public class DataLoader {
                         true, LocalDateTime.now(), u4));
             }
 
-            // ── Características (igual al P1) ─────────────────────────────────
+
             if (caracteristicaRepository.count() == 0) {
                 Caracteristica prog    = save(caracteristicaRepository, "Programación",       null);
                 Caracteristica bd      = save(caracteristicaRepository, "Bases de Datos",     null);
@@ -124,13 +124,12 @@ public class DataLoader {
                 save(caracteristicaRepository, "Gestión del tiempo",      blandas);
             }
 
-            // ── Puestos — ahora con TipoPublicacion ───────────────────────────
+
             if (puestoRepository.count() == 0) {
                 Empresa e1 = empresaRepository.findAll().get(0);
                 Empresa e2 = empresaRepository.findAll().get(1);
 
-                // PUBLICO = visible en la búsqueda pública sin login
-                // PRIVADO = solo visible para oferentes logueados
+
 
                 Puesto p1 = puestoRepository.save(new Puesto(null,
                         "Desarrollador Java Senior",
@@ -162,7 +161,7 @@ public class DataLoader {
                         new BigDecimal("2700000"), EstadoPuesto.ACTIVO, TipoPublicacion.PRIVADO,
                         true, LocalDateTime.now(), e2));
 
-                // Links puesto-característica (igual al P1)
+
                 link(puestoCaracteristicaRepository, caracteristicaRepository, p1, "Java",                    4);
                 link(puestoCaracteristicaRepository, caracteristicaRepository, p1, "Spring Boot",             4);
                 link(puestoCaracteristicaRepository, caracteristicaRepository, p1, "PostgreSQL",              3);

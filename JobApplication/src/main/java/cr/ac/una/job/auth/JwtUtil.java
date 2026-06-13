@@ -16,14 +16,14 @@ public class JwtUtil {
     @Value("${jwt.secret}")
     private String secret;
 
-    @Value("${jwt.expiration-ms:86400000}")   // 24 h por defecto
+    @Value("${jwt.expiration-ms:86400000}")
     private long expirationMs;
 
     private SecretKey key() {
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
-    /** Genera un token con el email y el rol del usuario */
+
     public String generateToken(String email, Rol rol, Long usuarioId) {
         return Jwts.builder()
                 .subject(email)
@@ -35,7 +35,7 @@ public class JwtUtil {
                 .compact();
     }
 
-    /** Extrae el email (subject) del token */
+
     public String getEmail(String token) {
         return claims(token).getSubject();
     }
@@ -46,12 +46,12 @@ public class JwtUtil {
         return Rol.valueOf(rolStr);
     }
 
-    /** Extrae el id del usuario del token */
+
     public Long getUsuarioId(String token) {
         return claims(token).get("usuarioId", Long.class);
     }
 
-    /** Valida que el token sea correcto y no haya expirado */
+
     public boolean isValid(String token) {
         try {
             claims(token);

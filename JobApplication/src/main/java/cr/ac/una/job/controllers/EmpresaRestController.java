@@ -25,7 +25,7 @@ public class EmpresaRestController {
     @Autowired private EmpresaService empresaService;
     @Autowired private PuestoService puestoService;
 
-    // ── Perfil ────────────────────────────────────────────────────────────────
+
 
     @GetMapping("/perfil")
     public ResponseEntity<EmpresaResponse> perfil(HttpServletRequest req) {
@@ -43,7 +43,7 @@ public class EmpresaRestController {
         return ResponseEntity.ok(empresaService.updateEmpresa(e.getIdEmpresa(), body));
     }
 
-    // ── Puestos ───────────────────────────────────────────────────────────────
+
 
     @GetMapping("/puestos")
     public ResponseEntity<List<PuestoResponse>> misPuestos(HttpServletRequest req) {

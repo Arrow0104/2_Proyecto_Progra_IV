@@ -31,7 +31,7 @@ public class RegistroRestController {
 
     @PostMapping("/empresa")
     public ResponseEntity<?> registrarEmpresa(@RequestBody Map<String, String> body) {
-        // Crear usuario
+
         var req = new CreateUsuarioRequest(
             body.get("correo"), body.get("identificacion"),
             body.get("password"), Rol.EMPRESA, EstadoUsuario.PENDIENTE
@@ -39,7 +39,7 @@ public class RegistroRestController {
         var usuarioResp = usuarioService.createUsuario(req);
         Usuario u = usuarioService.getDomainUsuarioById(usuarioResp.getIdUsuario());
 
-        // Crear empresa vinculada
+
         Empresa e = new Empresa(null,
             body.getOrDefault("nombre", ""),
             body.getOrDefault("telefono", ""),
