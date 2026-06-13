@@ -61,10 +61,10 @@ public class UsuarioService {
                 null,
                 request.getCorreo().trim(),
                 request.getIdentificacion().trim(),
-                passwordEncoder.encode(request.getPassword()),   // ← BCrypt P2
+                passwordEncoder.encode(request.getPassword()),
                 request.getRol(),
                 request.getEstado(),
-                true,
+                false,             // ← siempre inactivo al crear, el admin activa después
                 LocalDateTime.now()
         );
         return toResponse(repository.save(u));

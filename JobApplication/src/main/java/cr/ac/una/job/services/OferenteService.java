@@ -4,10 +4,14 @@ import cr.ac.una.job.dtos.oferente.CreateOferenteRequest;
 import cr.ac.una.job.dtos.oferente.OferenteResponse;
 import cr.ac.una.job.dtos.oferente.UpdateOferenteRequest;
 import cr.ac.una.job.exceptions.OferenteNotFoundException;
+import cr.ac.una.job.models.EstadoUsuario;
 import cr.ac.una.job.models.Oferente;
+import cr.ac.una.job.models.Usuario;
 import cr.ac.una.job.repositories.IOferenteRepository;
+import cr.ac.una.job.repositories.IUsuarioRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,13 +25,19 @@ public class OferenteService {
 
     private final IOferenteRepository repository;
 
+    @Autowired
+    private IUsuarioRepository usuarioRepository;
+
     public OferenteService(IOferenteRepository repository) {
         this.repository = repository;
     }
 
     @Transactional(readOnly = true)
     public List<OferenteResponse> getAllOferentes() {
-        return repository.findByActiveTrue().stream().map(this::toResponse).toList();
+        return repository.findAll()
+                .stream()
+                .map(this::toResponse)
+                .collect(java.util.stream.Collectors.toList());
     }
 
     @Transactional(readOnly = true)
@@ -63,7 +73,7 @@ public class OferenteService {
                 trim(request.getCorreoOferente()),
                 request.getResidencia().trim(),
                 trim(request.getCvPath()),
-                true,
+                false,              // <-- era true, ahora false
                 LocalDateTime.now(),
                 null
         );
@@ -86,9 +96,18 @@ public class OferenteService {
     }
 
     public void changeActiveStatus(Long id, boolean value) {
-        Oferente o = repository.findById(id).orElseThrow(() -> new OferenteNotFoundException(id));
+        Oferente o = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Oferente no encontrado"));
         o.setActive(value);
         repository.save(o);
+
+        // También actualizar el usuario vinculado
+        if (o.getUsuario() != null) {
+            Usuario u = o.getUsuario();
+            u.setActive(value);
+            u.setEstado(value ? EstadoUsuario.ACTIVO : EstadoUsuario.INACTIVO);
+            usuarioRepository.save(u);
+        }
     }
 
     public void deleteLogical(Long id) {

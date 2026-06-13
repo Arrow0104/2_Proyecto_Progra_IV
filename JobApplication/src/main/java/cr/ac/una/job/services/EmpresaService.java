@@ -5,9 +5,13 @@ import cr.ac.una.job.dtos.empresa.EmpresaResponse;
 import cr.ac.una.job.dtos.empresa.UpdateEmpresaRequest;
 import cr.ac.una.job.exceptions.EmpresaNotFoundException;
 import cr.ac.una.job.models.Empresa;
+import cr.ac.una.job.models.EstadoUsuario;
+import cr.ac.una.job.models.Usuario;
 import cr.ac.una.job.repositories.IEmpresaRepository;
+import cr.ac.una.job.repositories.IUsuarioRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,13 +25,19 @@ public class EmpresaService {
 
     private final IEmpresaRepository repository;
 
+    @Autowired
+    private IUsuarioRepository usuarioRepository;
+
     public EmpresaService(IEmpresaRepository repository) {
         this.repository = repository;
     }
 
     @Transactional(readOnly = true)
     public List<EmpresaResponse> getAllEmpresas() {
-        return repository.findByActiveTrue().stream().map(this::toResponse).toList();
+        return repository.findAll()
+                .stream()
+                .map(this::toResponse)
+                .collect(java.util.stream.Collectors.toList());
     }
 
     @Transactional(readOnly = true)
@@ -61,7 +71,7 @@ public class EmpresaService {
                 trim(request.getLocalizacion()),
                 trim(request.getCorreoEmpresa()),
                 trim(request.getDescripcion()),
-                true,
+                false,
                 LocalDateTime.now(),
                 null
         );
@@ -82,9 +92,18 @@ public class EmpresaService {
     }
 
     public void changeActiveStatus(Long id, boolean value) {
-        Empresa e = repository.findById(id).orElseThrow(() -> new EmpresaNotFoundException(id));
+        Empresa e = repository.findById(id)
+                .orElseThrow(() -> new EmpresaNotFoundException(id));
         e.setActive(value);
         repository.save(e);
+
+        // También actualizar el usuario vinculado
+        if (e.getUsuario() != null) {
+            Usuario u = e.getUsuario();
+            u.setActive(value);
+            u.setEstado(value ? EstadoUsuario.ACTIVO : EstadoUsuario.INACTIVO);
+            usuarioRepository.save(u);
+        }
     }
 
     public void deleteLogical(Long id) {

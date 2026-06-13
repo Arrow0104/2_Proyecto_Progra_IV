@@ -61,7 +61,6 @@ public class Empresa {
     @PrePersist
     public void prePersist() {
         if (createdAt == null) createdAt = LocalDateTime.now();
-        active = true;
     }
 
     public Long getIdEmpresa() { return idEmpresa; }

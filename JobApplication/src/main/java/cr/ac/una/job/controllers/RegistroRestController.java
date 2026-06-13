@@ -34,7 +34,7 @@ public class RegistroRestController {
         // Crear usuario
         var req = new CreateUsuarioRequest(
             body.get("correo"), body.get("identificacion"),
-            body.get("password"), Rol.EMPRESA, EstadoUsuario.ACTIVO
+            body.get("password"), Rol.EMPRESA, EstadoUsuario.PENDIENTE
         );
         var usuarioResp = usuarioService.createUsuario(req);
         Usuario u = usuarioService.getDomainUsuarioById(usuarioResp.getIdUsuario());
@@ -46,7 +46,7 @@ public class RegistroRestController {
             body.getOrDefault("localizacion", null),
             body.getOrDefault("correoEmpresa", null),
             body.getOrDefault("descripcion", null),
-            true, LocalDateTime.now(), u
+            false, LocalDateTime.now(), u
         );
         empresaRepository.save(e);
 
@@ -57,7 +57,7 @@ public class RegistroRestController {
     public ResponseEntity<?> registrarOferente(@RequestBody Map<String, String> body) {
         var req = new CreateUsuarioRequest(
             body.get("correo"), body.get("identificacion"),
-            body.get("password"), Rol.OFERENTE, EstadoUsuario.ACTIVO
+            body.get("password"), Rol.OFERENTE, EstadoUsuario.PENDIENTE
         );
         var usuarioResp = usuarioService.createUsuario(req);
         Usuario u = usuarioService.getDomainUsuarioById(usuarioResp.getIdUsuario());
@@ -69,7 +69,7 @@ public class RegistroRestController {
             body.getOrDefault("telefono", null),
             body.getOrDefault("correoOferente", null),
             body.getOrDefault("residencia", ""),
-            null, true, LocalDateTime.now(), u
+            null, false, LocalDateTime.now(), u
         );
         oferenteRepository.save(o);
 

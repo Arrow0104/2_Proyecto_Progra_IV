@@ -21,8 +21,9 @@ async function request(method, path, body = null) {
         throw { status: res.status, mensaje: err.mensaje || 'Error desconocido' }
     }
 
-    if (res.status === 204) return null
-    return res.json()
+    const text = await res.text()
+    if (!text) return null
+    return JSON.parse(text)
 }
 
 export const api = {

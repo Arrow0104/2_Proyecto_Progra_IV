@@ -11,7 +11,7 @@ public class CreateUsuarioRequest {
     @NotBlank private String identificacion;
     @NotBlank private String password;
     @NotNull  private Rol    rol;
-    private EstadoUsuario    estado = EstadoUsuario.ACTIVO;
+    private EstadoUsuario    estado = EstadoUsuario.PENDIENTE;
 
     public CreateUsuarioRequest() {}
 

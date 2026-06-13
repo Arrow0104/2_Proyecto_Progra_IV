@@ -52,7 +52,6 @@ public class Usuario {
     @PrePersist
     public void prePersist() {
         if (createdAt == null) createdAt = LocalDateTime.now();
-        active = true;
     }
 
     public Long getIdUsuario() { return idUsuario; }
